@@ -601,7 +601,10 @@ fn main() {
     let reps: usize = env_var("PAPER_REPS")
         .map(|s| parse("PAPER_REPS", &s))
         .unwrap_or(5);
-    assert!(reps >= 1, "PAPER_REPS should be at least 1");
+    assert!(
+        reps % 2 == 1,
+        "PAPER_REPS should be odd, so the median is a measured value"
+    );
     let seed: u64 = env_var("PAPER_SEED")
         .map(|s| parse("PAPER_SEED", &s))
         .unwrap_or(0);
